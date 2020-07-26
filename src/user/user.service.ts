@@ -19,7 +19,7 @@ export class UserService {
       throw new HttpException('E-mail already taken.', HttpStatus.BAD_REQUEST);
     }
     if (createUserDto.creationToken !== process.env.CREATION_TOKEN) {
-      throw new HttpException('Wrong creation token.', HttpStatus.BAD_REQUEST);
+      throw new HttpException('Wrong creation code.', HttpStatus.BAD_REQUEST);
     }
     const hashedPassword = await bcrypt.hash(createUserDto.password, 10);
     const createdUser = new this.userModel({
